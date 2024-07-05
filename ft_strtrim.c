@@ -14,45 +14,37 @@
 
 char *ft_strtrim(char const *s1, char const *set)
 {
-    int i;
     size_t start;
     size_t end;
     size_t new_len;
     char *trimmed_str;
 
-    end = ft_strlen(s1);
-    start = 0;
-    i = 0;
-
     if (!s1 || !set)
-    {
         return NULL;
-    }
-    
+
+    start = 0;
+    end = ft_strlen(s1);
+
+    // Znajdowanie pozycji startowej
     while (s1[start] && ft_strchr(set, s1[start]))
-    {
         start++;
-    }
-     while (end > start && ft_strchr(set, s1[end - 1]))
-     {
+
+    // Znajdowanie pozycji końcowej
+    while (end > start && ft_strchr(set, s1[end - 1]))
         end--;
-    }
 
     // Alokacja pamięci dla nowego łańcucha
     new_len = end - start;
     trimmed_str = (char *)malloc(new_len + 1);
-   
     if (!trimmed_str)
-    {
         return NULL;
-    }
 
     // Skopiowanie odpowiednich znaków
-    if (trimmed_str)
-    ft_strlcpy(trimmed_str, &s1[i], new_len + 1);
+    ft_strlcpy(trimmed_str, &s1[start], new_len + 1);
 
-    return (trimmed_str);
+    return trimmed_str;
 }
+/*
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -120,4 +112,4 @@ int main(void)
     {
         printf("Memory allocation failed\n");
     }
-}
+}*/
