@@ -12,67 +12,53 @@
 
 #include "libft.h"
 
-char *ft_itoa(int n) 
+static int	get_num_length(int n)
 {
-    char *result;
-    int neg;
-    int length;
-    int temp;
+	int	len;
 
-    neg = 0;
-    length = 0;
-
-    if (n == 0) 
-    {
-        result = (char *)malloc(2 * sizeof(char));
-        if (result == NULL) 
-        {
-            return NULL;
-        }
-        result[0] = '0';
-        result[1] = '\0';
-        return result;
-    }
-
-    if (n < 0) 
-    {
-        neg = 1;
-        temp = -n;
-        length++;
-    } 
-    else 
-    {
-        temp = n;
-    }
-
-    int temp_length = temp;
-    while (temp_length > 0)
-    {
-        temp_length /= 10;
-        length++;
-    }
-
-    result = (char *)malloc((length + 1) * sizeof(char));
-    if (result == NULL)
-    {
-        return NULL;
-    }
-
-    result[length] = '\0';
-    while (length > neg) 
-    {
-        length--;
-        result[length] = '0' + (temp % 10);
-        temp /= 10;
-    }
-
-    if (neg)
-    {
-        result[0] = '-';
-    }
-
-    return result;
+	if (n == 0)
+		return (1);
+	len = 0;
+	if (n < 0)
+		len++;
+	while (n != 0)
+	{
+		len++;
+		n /= 10;
+	}
+	return (len);
 }
+
+char	*ft_itoa(int n)
+{
+	char	*result;
+	int		len;
+	long	num;
+	int		i;
+
+	len = get_num_length(n);
+	result = (char *)malloc(len + 1);
+	if (!result)
+		return (NULL);
+	result[len] = '\0';
+	num = (long)n;
+	if (n < 0)
+		num = -num;
+	i = len - 1;
+	while (i >= 0)
+	{
+		result[i] = num % 10 + '0';
+		num /= 10;
+		if (n < 0 && i == 1)
+		{
+			result[0] = '-';
+			break;
+		}
+		i--;
+	}
+	return (result);
+}
+
 /*
 #include <stdio.h>
 int main() 
