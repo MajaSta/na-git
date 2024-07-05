@@ -15,7 +15,13 @@
 void    *ft_calloc(size_t count, size_t size)
 {
     void    *ptr;
-    
+
+    // Sprawdzenie na przepełnienie
+    if (size != 0 && count > SIZE_MAX / size)
+    {
+        return NULL;
+    }
+
     ptr = (void *)malloc(count * size);
 
     if (!ptr)
@@ -27,6 +33,7 @@ void    *ft_calloc(size_t count, size_t size)
 
     return ptr;
 }
+
 /*
 #include <stdio.h>
 int main() 
