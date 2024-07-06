@@ -28,9 +28,9 @@ void    *ft_memchr(const void *s, int c, size_t n)
 	}
 	return (NULL);
 }
-
-#include <stdio.h>
 /*
+#include <stdio.h>
+
 int main()
 {
     const char str[] = "Hello, world";
