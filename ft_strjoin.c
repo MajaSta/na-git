@@ -64,3 +64,36 @@ char *ft_strjoin(char const *s1, char const *s2)
 
     return (result);
 }
+
+#include <stdlib.h>
+
+char	*ft_strjoin(char const *s1, char const *s2)
+{
+	size_t	i;
+	size_t	j;
+	size_t	len1;
+	size_t	len2;
+	char	*result;
+
+	len2 = 0;
+	len1 = 0;
+	i = 0;
+	j = 0;
+	if (!s1 || !s2)
+		return (NULL);
+	while (s1[len1])
+		len1++;
+	while (s2[len2])
+		len2++;
+	result = (char *)malloc(len1 + len2 + 1);
+	if (!result)
+		return (NULL);
+	while (i < len1)
+		result[i] = s1[i];
+	i++;
+	while (j < len2)
+		result[i + j] = s2[j];
+	j++;
+	result[i + j] = '\0';
+	return (result);
+}
