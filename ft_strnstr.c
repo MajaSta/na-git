@@ -9,6 +9,9 @@
 /*   Updated: 2024/07/04 22:01:48 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+ft_strnstr.c: Error!
+Error: LINE_TOO_LONG        (line:  34, col:  82):	line too long
+Error: TOO_MANY_LINES       (line:  45, col:   1):	Function has more than 25 lines
 
 #include "libft.h"
 
