@@ -8,6 +8,23 @@ ft_split.c:65:26: error: comparison of integers of different signs: 'size_t' (ak
 ft_split.c:67:44: error: comparison of integers of different signs: 'size_t' (aka 'unsigned long') and 'int' [-Werror,-Wsign-compare]
         else if ((s[i] == c || i == len) && start != -1)
 
+i = 0;
+	j = 0;
+	str = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	if (str == NULL)
+		return (NULL);
+	while (s1[i] != '\0')
+	{
+		str[i] = s1[i];
+		i++;
+	}
+	while (s2[j] != '\0')
+	{
+		str[i + j] = s2[j];
+		j++;
+	}
+	str[i + j] = '\0';
+	return (str);
 
                                             ~~~~~ ^  ~~
 #include "libft.h"
