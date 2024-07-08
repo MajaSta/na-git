@@ -135,3 +135,19 @@ char **ft_split(char const *s, char c)
     split[j] = NULL;
     return split;
 }
+
+	while (i >= 0)
+	{
+		if (i == 0 && n < 0)
+		{
+			result[i] = '-';
+		}
+		else
+		{
+			result[i] = num % 10 + '0';
+			num /= 10;
+		}
+		i--;
+	}
+	return (result);
+}
