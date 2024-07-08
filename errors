@@ -1,0 +1,10 @@
+ft_split.c:60:8: error: implicitly declaring library function 'strlen' with type 'unsigned long (const char *)' [-Werror,-Wimplicit-function-declaration]
+        len = strlen(s);
+              ^
+ft_split.c:60:8: note: include the header <string.h> or explicitly provide a declaration for 'strlen'
+ft_split.c:65:26: error: comparison of integers of different signs: 'size_t' (aka 'unsigned long') and 'int' [-Werror,-Wsign-compare]
+                if (s[i] != c && start == -1)
+                                 ~~~~~ ^  ~~
+ft_split.c:67:44: error: comparison of integers of different signs: 'size_t' (aka 'unsigned long') and 'int' [-Werror,-Wsign-compare]
+        else if ((s[i] == c || i == len) && start != -1)
+                                            ~~~~~ ^  ~~
