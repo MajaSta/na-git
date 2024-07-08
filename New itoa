@@ -1,44 +1,59 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By:                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/09/13 11:58:05 by prossi            #+#    #+#             */
+/*   Updated: 2021/09/22 19:44:23 by prossi           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-static void		lengths(int n, size_t *len, int *weight)
+static unsigned int	ft_number_size(int number)
 {
-	*len = 1;
-	if (n >= 0)
+	unsigned int	length;
+	
+	length = 0;
+	if (number == 0)
+		return (1);
+	if (number < 0)
+		length += 1;
+	while (number != 0)
 	{
-		*len = 0;
-		n = -n;
+		number /= 10;
+		length++;
 	}
-	*weight = 1;
-	while (n / *weight < -9)
-	{
-		*weight *= 10;
-		*len += 1;
-	}
+	return (length);
 }
 
-char			*ft_itoa(int n)
+char	*ft_itoa(int n)
 {
-	size_t		len;
-	int			weight;
-	size_t		cur;
-	char		*str;
+	char		*string;
+	unsigned int	number;
+	unsigned int	length;
 
-	lengths(n, &len, &weight);
-	str = (char *)malloc(sizeof(*str) * (len + 1));
-	if (str == NULL)
+	length = ft_number_size(n);
+	string = (char *)malloc(sizeof(char) * (length + 1));
+	if (string == NULL)
 		return (NULL);
-	cur = 0;
-	if (n < 0)
+	if (number < 0)
 	{
-		str[cur] = '-';
-		cur++;
+		string[0] = '-';
+		number = -n;
 	}
-	if (n > 0)
-		n = -n;
-	while (weight >= 1)
+	else
+		number = n;
+	if (number == 0)
+		string[0] = '0';
+	string[length] = '\0';
+	while (number != 0)
 	{
-		str[cur++] = -(n / weight % 10) + 48;
-		weight /= 10;
+		string[length - 1] = (number % 10) + '0';
+		number = number / 10;
+		length--;
 	}
-	str[cur] = '\0';
-	return (str);
+	return (string);
+}
